@@ -27,6 +27,9 @@ const Popup = styled.div`
   left: 50%;
   top: calc(100% + 11px);
   gap: 3px;
+  @media (max-width: 925px) {
+    left: 0%;
+  }
 `;
 
 export interface OrderByDropdownProps {
