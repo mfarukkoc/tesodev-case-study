@@ -53,7 +53,11 @@ const SearchBox = ({
   const history = useHistory();
   return (
     <SearchBoxWrap>
-      <FullWidthInput value={searchValue} onChange={onChange} />
+      <FullWidthInput
+        placeholder="Type some name to search.."
+        value={searchValue}
+        onChange={onChange}
+      />
       {searchValue === "" || results === undefined ? null : (
         <ResultPopup>
           <EmployeeList employees={results} />
