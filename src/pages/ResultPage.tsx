@@ -12,15 +12,22 @@ import OrderByDropdown from "../components/order-by-dropdown/OrderByDropdown";
 
 const HeaderRow = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: auto 50% 15% auto;
   grid-column-gap: 35px;
   align-items: center;
   margin: 27px 35px 93px 35px;
+  @media (max-width: 925px) {
+    grid-template-columns: auto min-content;
+    grid-template-rows: auto auto;
+    grid-row-gap: 17px;
+    margin-bottom: 27px;
+  }
 `;
 
 const ContentRow = styled.div`
   display: grid;
-  grid-template-columns: calc(60% - 70px);
+  margin-bottom: 27px;
+  grid-template-columns: calc(70% - 70px);
   justify-content: center;
   @media (max-width: 900px) {
     grid-template-columns: 90%;
@@ -42,6 +49,18 @@ const FlexWrap = styled.div`
 
 const MinContentButton = styled(Button)`
   width: min-content;
+  @media (max-width: 925px) {
+    width: unset;
+  }
+`;
+
+const RightAlignButton = styled(Button)`
+  white-space: nowrap;
+  margin-left: auto;
+  @media (max-width: 925px) {
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
 `;
 
 const ResultPage = () => {
@@ -64,13 +83,14 @@ const ResultPage = () => {
   useEffect(() => {
     const params = Object.fromEntries(new URLSearchParams(location.search));
     setQueryParams(params);
+    setSearchValue(params.search);
   }, [location.search]);
 
   useEffect(() => {
     setResults(
       getEmployees({
         search: queryParams.search,
-        page: currentPage,
+        page: parseInt("1" || queryParams.page, 10),
         limit: 6,
         order: queryParams.orderBy,
       }),
@@ -110,6 +130,9 @@ const ResultPage = () => {
         >
           Search
         </MinContentButton>
+        <RightAlignButton onClick={() => history.push("/new-record")}>
+          Add new record
+        </RightAlignButton>
       </HeaderRow>
       <ContentRow>
         <CustomOrderByDropdown
