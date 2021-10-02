@@ -119,7 +119,7 @@ const NewRecordPage = () => {
           }}
         >
           {(props: FormikProps<NewRecordForm>) => {
-            const { values, touched, errors, handleChange } = props;
+            const { values, touched, errors, handleChange, handleBlur } = props;
             return (
               <Form>
                 <FormField
@@ -136,6 +136,7 @@ const NewRecordPage = () => {
                     placeholder="Enter name and surname"
                     onChange={handleChange}
                     hasError={!!(errors.nameSurname && touched.nameSurname)}
+                    onBlur={handleBlur}
                   />
                 </FormField>
                 <FormField
@@ -151,7 +152,8 @@ const NewRecordPage = () => {
                     value={values.country}
                     placeholder="Enter a country"
                     onChange={handleChange}
-                    hasError={!!(errors.nameSurname && touched.nameSurname)}
+                    hasError={!!(errors.country && touched.country)}
+                    onBlur={handleBlur}
                   />
                 </FormField>
                 <FormField
@@ -166,6 +168,7 @@ const NewRecordPage = () => {
                     placeholder="Enter a city"
                     onChange={handleChange}
                     hasError={!!(errors.city && touched.city)}
+                    onBlur={handleBlur}
                   />
                 </FormField>
                 <FormField
@@ -180,6 +183,7 @@ const NewRecordPage = () => {
                     placeholder="Enter a e-mail"
                     onChange={handleChange}
                     hasError={!!(errors.email && touched.email)}
+                    onBlur={handleBlur}
                   />
                 </FormField>
                 <FormControlWrap>
