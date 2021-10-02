@@ -92,3 +92,26 @@ export const getEmployees = ({
 
   return { data: result, count, pages };
 };
+
+export const addEmployee = ({
+  nameSurname,
+  company,
+  email,
+  date,
+  country,
+  city,
+}: {
+  nameSurname: string;
+  company: string;
+  email: string;
+  date: string;
+  country: string;
+  city: string;
+}): void => {
+  const employeeDBStorage = localStorage.getItem("employeeDB");
+  if (employeeDBStorage) {
+    const employeeDB: string[][] = JSON.parse(employeeDBStorage);
+    employeeDB.push([nameSurname, company, email, date, country, city]);
+    localStorage.setItem("employeeDB", JSON.stringify(employeeDB));
+  }
+};
