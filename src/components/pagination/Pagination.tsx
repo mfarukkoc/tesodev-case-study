@@ -40,7 +40,6 @@ const Pagination = ({
 
     if (currentPage <= 3) {
       // case dots in the middle current page on left end
-      console.log("case1");
       startIndex = 1;
       for (let i = 0; i < 4; i += 1) {
         pages.push({ label: startIndex + i, page: startIndex + i });
@@ -51,7 +50,6 @@ const Pagination = ({
       }
     } else if (finishDiff <= 2) {
       // case dots in the middle current page on right end
-      console.log("case2");
       startIndex = currentPage - (4 - finishDiff - 1);
       for (let i = 1; i < 3; i += 1) {
         pages.push({ label: i, page: i });
@@ -62,7 +60,6 @@ const Pagination = ({
       }
     } else {
       // case current page between dots
-      console.log("case3");
       startIndex = currentPage - 1;
       for (let i = 1; i < 3; i += 1) {
         pages.push({ label: i, page: i });
