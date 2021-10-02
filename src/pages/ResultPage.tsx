@@ -40,6 +40,10 @@ const FlexWrap = styled.div`
   align-items: center;
 `;
 
+const MinContentButton = styled(Button)`
+  width: min-content;
+`;
+
 const ResultPage = () => {
   const [queryParams, setQueryParams] = useState<{
     search?: string;
@@ -87,7 +91,7 @@ const ResultPage = () => {
             setSearchValue(event.target.value);
           }}
         />
-        <Button
+        <MinContentButton
           onClick={() => {
             const newQueryParams = {
               ...queryParams,
@@ -105,7 +109,7 @@ const ResultPage = () => {
           }}
         >
           Search
-        </Button>
+        </MinContentButton>
       </HeaderRow>
       <ContentRow>
         <CustomOrderByDropdown
