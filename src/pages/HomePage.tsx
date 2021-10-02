@@ -50,6 +50,10 @@ const SearchBoxRow = styled.div`
   margin-top: 44px;
 `;
 
+const MinContentButton = styled(Button)`
+  width: min-content;
+`;
+
 const HomePage = () => {
   const history = useHistory();
   const [searchValue, setSearchValue] = useState("");
@@ -82,8 +86,7 @@ const HomePage = () => {
           results={results.data}
           displayShowMore={results.count > 3}
         />
-        <Button
-          style={{ width: "min-content" }}
+        <MinContentButton
           onClick={() => {
             const newQuery = new URLSearchParams({
               search: searchValue,
@@ -95,7 +98,7 @@ const HomePage = () => {
           }}
         >
           Search
-        </Button>
+        </MinContentButton>
       </SearchBoxRow>
     </Container>
   );
