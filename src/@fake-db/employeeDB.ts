@@ -26,7 +26,7 @@ const isTargetContains = (search: string, target: string): boolean => {
   return target.toLowerCase().includes(search.toLowerCase());
 };
 
-const orderBy = (employees: string[], order: OrderKey): string[] => {
+const orderBy = (employees: string[][], order: OrderKey): string[][] => {
   switch (order) {
     case "NAME_ASC":
       return employees.sort((a, b) =>
@@ -66,13 +66,13 @@ export const getEmployees = ({
   order,
   limit,
   page,
-}: GetEmployeesProps): { data: string[]; count: number; pages: number } => {
+}: GetEmployeesProps): { data: string[][]; count: number; pages: number } => {
   const employeeDBStorage = localStorage.getItem("employeeDB");
-  let result: string[] = [];
+  let result: string[][] = [];
   let count = 0;
   let pages = 0;
   if (employeeDBStorage) {
-    const employeeDB: string[] = JSON.parse(employeeDBStorage);
+    const employeeDB: string[][] = JSON.parse(employeeDBStorage);
     result = employeeDB;
     if (search !== undefined) {
       result = result.filter((employee) =>
@@ -86,7 +86,7 @@ export const getEmployees = ({
     }
     if (limit !== undefined && page !== undefined) {
       pages = Math.ceil(count / limit);
-      result = result.slice((page - 1) * limit, limit);
+      result = result.slice((page - 1) * limit, (page - 1) * limit + limit);
     }
   }
 
