@@ -44,6 +44,7 @@ const ReturnBackDiv = styled.div`
 
 const FormControlWrap = styled.div`
   display: flex;
+  justify-content: flex-end;
 `;
 
 interface NewRecordForm {
