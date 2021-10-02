@@ -25,15 +25,28 @@ const HeaderRow = styled.div`
   justify-items: center;
   align-items: center;
   height: min-content;
+  @media (max-width: 925px) {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    grid-gap: 10px;
+  }
+`;
+
+const RightAlignButton = styled(Button)`
+  margin-left: auto;
 `;
 
 const LogoWrapper = styled.div`
   grid-column-start: 2;
   display: flex;
   flex-direction: column;
+  @media (max-width: 925px) {
+    grid-row-start: 2;
+    grid-column-start: unset;
+  }
 `;
 
-const LogoSubText = styled.caption`
+const LogoSubText = styled.p`
   font-family: "Roboto";
   font-size: 14px;
   font-weight: bold;
@@ -73,6 +86,9 @@ const HomePage = () => {
         <LogoWrapper>
           <img src={landingPageLogo} alt="tesodev logo" />
         </LogoWrapper>
+        <RightAlignButton onClick={() => history.push("/new-record")}>
+          Add new record
+        </RightAlignButton>
       </HeaderRow>
 
       <LogoSubText>Search web app</LogoSubText>
