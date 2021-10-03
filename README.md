@@ -1,46 +1,46 @@
-# Getting Started with Create React App
+# Search App | TESODEV Case Study
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Web application made for case-study in the interview process of [TESODEV](https://www.tesodev.com/).
 
-## Available Scripts
+## [Live Preview](https://tesodev-search.netlify.app/)
+## Requirements
+- `node v14.17.3`
+- `npm 6.14.10` or `yarn 1.22.11`
+## Setup
+1. Install required packages by  
+  `yarn` or `npm install`
 
-In the project directory, you can run:
+2. Then start development server by  
+  `yarn start` or `npm run start`  
+  Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Search
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- User can search a word in main page, first 3 matching display in the popup under search box.
 
-### `yarn test`
+- If there are matching results more than 3, `Show more` option is displayed, when clicked user is redirected to listing page to see all the results.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- If there is no matching result `No record found..` text displayed to inform the user.
 
-### `yarn build`
+- Listing page uses **query parameters**, so user can share his/her search results by sending link.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Pagination will be present in the listing page.
+### Add new record
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- You can add new records to database.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Form inputs are validated with following criterias:  
+  - Name Surname (only letters, min 4 – max 60 character)
+  - Country (only letters, min 2 – max 40 character)
+  - City (only letters, min 2 – max 40 character)
+  - Email (basic email validation)
 
-### `yarn eject`
+- Error messages displayed in the related input field.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- User can't submit form if validation fails.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Fake Database
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Uses **localStorage** to imitiate database services with mockData.
