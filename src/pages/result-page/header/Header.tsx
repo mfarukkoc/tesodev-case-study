@@ -6,7 +6,7 @@ import tesodevLogo from "../../../assets/tesodev-small.svg";
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: auto 50% 15% auto;
+  grid-template-columns: auto 50% auto auto;
   grid-column-gap: 35px;
   align-items: center;
   margin: 27px 35px 93px 35px;
