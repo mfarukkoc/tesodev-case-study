@@ -2,7 +2,7 @@ import { ChangeEvent, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { getEmployees } from "../@fake-db/employeeDB";
-import landingPageLogo from "../assets/images/logo-landing-page.png";
+import tesodevLogo from "../assets/tesodev-big.svg";
 import Button from "../components/button/Button";
 import SearchBox from "../components/search-box/SearchBox";
 
@@ -84,7 +84,7 @@ const HomePage = () => {
     <Container>
       <HeaderRow>
         <LogoWrapper>
-          <img src={landingPageLogo} alt="tesodev logo" />
+          <img src={tesodevLogo} alt="tesodev logo" />
         </LogoWrapper>
         <RightAlignButton onClick={() => history.push("/new-record")}>
           Add new record

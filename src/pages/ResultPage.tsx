@@ -3,8 +3,8 @@ import { useLocation, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../components/button/Button";
 import SearchBox from "../components/search-box/SearchBox";
-import searchPageLogo from "../assets/images/logo-search-page.png";
-import orderByIcon from "../assets/images/order-by-icon.png";
+import tesodevLogo from "../assets/tesodev-small.svg";
+import orderByIcon from "../assets/order-by-icon.svg";
 import { getEmployees, OrderKey } from "../@fake-db/employeeDB";
 import EmployeeList from "../components/employee-list/EmployeeList";
 import Pagination from "../components/pagination/Pagination";
@@ -102,7 +102,7 @@ const ResultPage = () => {
       <HeaderRow>
         <Logo
           onClick={() => history.push("/")}
-          src={searchPageLogo}
+          src={tesodevLogo}
           alt="tesodev logo"
         />
         <SearchBox

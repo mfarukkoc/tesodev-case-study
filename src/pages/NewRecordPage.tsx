@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Formik, Form, FormikProps } from "formik";
 import FormField from "../components/form-field/FormField";
 import Input from "../components/input/Input";
-import searchPageLogo from "../assets/images/logo-search-page.png";
+import tesodevLogo from "../assets/tesodev-small.svg";
 import leftArrow from "../assets/left-arrow.svg";
 import Button from "../components/button/Button";
 import { addEmployee } from "../@fake-db/employeeDB";
@@ -60,7 +60,7 @@ const NewRecordPage = () => {
     <PageWrap>
       <Logo
         onClick={() => history.push("/")}
-        src={searchPageLogo}
+        src={tesodevLogo}
         alt="tesodev logo"
       />
       <ContentWrap>
