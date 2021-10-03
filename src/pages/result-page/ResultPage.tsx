@@ -124,23 +124,25 @@ const ResultPage = () => {
           </FlexWrap>
         </CustomOrderByDropdown>
         <EmployeeList employees={results.data} gap="10px" />
-        <Pagination
-          totalPage={results.pages}
-          currentPage={currentPage}
-          onPageChange={(page: number) => {
-            setCurrentPage(page);
-            const newQueryParams = {
-              ...queryParams,
-              page: null || page.toString(),
-            };
-            const searchParams = new URLSearchParams(newQueryParams);
+        {results.pages > 1 && (
+          <Pagination
+            totalPage={results.pages}
+            currentPage={currentPage}
+            onPageChange={(page: number) => {
+              setCurrentPage(page);
+              const newQueryParams = {
+                ...queryParams,
+                page: null || page.toString(),
+              };
+              const searchParams = new URLSearchParams(newQueryParams);
 
-            history.replace({
-              pathname: "/result",
-              search: searchParams.toString(),
-            });
-          }}
-        />
+              history.replace({
+                pathname: "/result",
+                search: searchParams.toString(),
+              });
+            }}
+          />
+        )}
       </ContentRow>
     </div>
   );
