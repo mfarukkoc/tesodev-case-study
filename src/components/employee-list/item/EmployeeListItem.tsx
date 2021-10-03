@@ -28,6 +28,14 @@ const ListItemHeader = styled.p`
   font-size: 18px;
   line-height: 21px;
   margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  :hover {
+    overflow: visible;
+  }
 `;
 
 const ListItemSubText = styled.p`
