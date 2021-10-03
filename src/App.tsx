@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import NewRecordPage from "./pages/NewRecordPage";
-import ResultPage from "./pages/ResultPage";
+import HomePage from "./pages/home-page/HomePage";
+import NewRecordPage from "./pages/new-record-page/NewRecordPage";
+import ResultPage from "./pages/result-page/ResultPage";
 
 function App() {
   return (

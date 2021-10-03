@@ -1,28 +1,13 @@
-import { ChangeEvent, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import Button from "../components/button/Button";
-import SearchBox from "../components/search-box/SearchBox";
-import tesodevLogo from "../assets/tesodev-small.svg";
-import orderByIcon from "../assets/order-by-icon.svg";
-import { getEmployees, OrderKey } from "../@fake-db/employeeDB";
-import EmployeeList from "../components/employee-list/EmployeeList";
-import Pagination from "../components/pagination/Pagination";
-import OrderByDropdown from "../components/order-by-dropdown/OrderByDropdown";
 
-const HeaderRow = styled.div`
-  display: grid;
-  grid-template-columns: auto 50% 15% auto;
-  grid-column-gap: 35px;
-  align-items: center;
-  margin: 27px 35px 93px 35px;
-  @media (max-width: 925px) {
-    grid-template-columns: auto min-content;
-    grid-template-rows: auto auto;
-    grid-row-gap: 17px;
-    margin-bottom: 27px;
-  }
-`;
+import orderByIcon from "../../assets/order-by-icon.svg";
+import { getEmployees, OrderKey } from "../../@fake-db/employeeDB";
+import EmployeeList from "../../components/employee-list/EmployeeList";
+import Pagination from "../../components/pagination/Pagination";
+import OrderByDropdown from "../../components/order-by-dropdown/OrderByDropdown";
+import Header from "./header/Header";
 
 const ContentRow = styled.div`
   display: grid;
@@ -34,7 +19,7 @@ const ContentRow = styled.div`
   }
 `;
 
-const Logo = styled.img`
+const Icon = styled.img`
   cursor: pointer;
 `;
 
@@ -47,33 +32,20 @@ const FlexWrap = styled.div`
   align-items: center;
 `;
 
-const MinContentButton = styled(Button)`
-  width: min-content;
-  @media (max-width: 925px) {
-    width: unset;
-  }
-`;
-
-const RightAlignButton = styled(Button)`
-  white-space: nowrap;
-  margin-left: auto;
-  @media (max-width: 925px) {
-    grid-column-start: 2;
-    grid-row-start: 1;
-  }
-`;
-
 const ResultPage = () => {
+  const history = useHistory();
+  const location = useLocation();
+
   const [queryParams, setQueryParams] = useState<{
     search?: string;
     page?: string;
     orderBy?: OrderKey;
   }>({});
+
   const [searchValue, setSearchValue] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedOrderKey, setSelectedOrderKey] = useState("");
-  const history = useHistory();
-  const location = useLocation();
+
   const [results, setResults] = useState<{
     data: string[][];
     count: number;
@@ -90,50 +62,37 @@ const ResultPage = () => {
     setResults(
       getEmployees({
         search: queryParams.search,
-        page: parseInt("1" || queryParams.page, 10),
+        page: parseInt(queryParams.page || "1", 10),
         limit: 6,
         order: queryParams.orderBy,
       }),
     );
-  }, [queryParams, currentPage]);
+  }, [queryParams]);
 
   return (
     <div>
-      <HeaderRow>
-        <Logo
-          onClick={() => history.push("/")}
-          src={tesodevLogo}
-          alt="tesodev logo"
-        />
-        <SearchBox
-          searchValue={searchValue}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            setSearchValue(event.target.value);
-          }}
-        />
-        <MinContentButton
-          onClick={() => {
-            const newQueryParams = {
-              ...queryParams,
-              search: searchValue,
-            };
-            delete newQueryParams.page;
-            setCurrentPage(1);
-            const searchParams = new URLSearchParams(newQueryParams);
-            setQueryParams(newQueryParams);
+      <Header
+        onLogoClick={() => history.push("/")}
+        onAddNewRecord={() => history.push("/new-record")}
+        searchValue={searchValue}
+        onSearchValueChange={(value: string) => {
+          setSearchValue(value);
+        }}
+        onSearch={() => {
+          const newQueryParams = {
+            ...queryParams,
+            search: searchValue,
+          };
+          delete newQueryParams.page;
+          setCurrentPage(1);
+          const searchParams = new URLSearchParams(newQueryParams);
 
-            history.replace({
-              pathname: "/result",
-              search: searchParams.toString(),
-            });
-          }}
-        >
-          Search
-        </MinContentButton>
-        <RightAlignButton onClick={() => history.push("/new-record")}>
-          Add new record
-        </RightAlignButton>
-      </HeaderRow>
+          history.replace({
+            pathname: "/result",
+            search: searchParams.toString(),
+          });
+        }}
+      />
       <ContentRow>
         <CustomOrderByDropdown
           optionList={[
@@ -152,7 +111,6 @@ const ResultPage = () => {
             delete newQueryParams.page;
             setCurrentPage(1);
             const searchParams = new URLSearchParams(newQueryParams);
-            setQueryParams(newQueryParams);
 
             history.replace({
               pathname: "/result",
@@ -161,8 +119,8 @@ const ResultPage = () => {
           }}
         >
           <FlexWrap>
-            <Logo src={orderByIcon} />
-            <div>Order By</div>
+            <Icon src={orderByIcon} />
+            <span>Order By</span>
           </FlexWrap>
         </CustomOrderByDropdown>
         <EmployeeList employees={results.data} gap="10px" />
@@ -176,7 +134,6 @@ const ResultPage = () => {
               page: null || page.toString(),
             };
             const searchParams = new URLSearchParams(newQueryParams);
-            setQueryParams(newQueryParams);
 
             history.replace({
               pathname: "/result",
