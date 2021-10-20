@@ -46,6 +46,7 @@ const ListItemSubText = styled.p`
   line-height: 14px;
   margin: 0;
   transition: 0.3s;
+  color: #686868;
 
   ${ListItemContainer}:hover & {
     color: #ffffff;
