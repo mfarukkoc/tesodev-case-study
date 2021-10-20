@@ -43,4 +43,4 @@ Web application made for case-study in the interview process of [TESODEV](https:
 
 ### Fake Database
 
-- Uses **localStorage** to imitiate database services with mockData.
+- Uses **localStorage** to imitate database services with mockData.
