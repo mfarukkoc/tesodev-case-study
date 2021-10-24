@@ -18,7 +18,7 @@ Web application made for case-study in the interview process of [TESODEV](https:
 
 ### Search
 
-- User can search a word in main page, first 3 matching display in the popup under search box.
+- User can search a word in main page, first 3 matching items will be displayed in the popup under search box.
 
 - If there are matching results more than 3, `Show more` option is displayed, when clicked user is redirected to listing page to see all the results.
 
